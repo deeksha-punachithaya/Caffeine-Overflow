@@ -1,0 +1,27 @@
+{'CQXlZh0EDq3vIGGj1cTq': 
+	{'Number of Plots': 3, 
+	'Date': DatetimeWithNanoseconds(2020, 8, 1, 15, 45, 4, 181000, tzinfo=<UTC>), 
+	'Contractor': 'Fawaz hussain', 
+	'Minimum Days a week': 6, 
+	'Materials': 
+		{'brick': 
+			{'Nos': 1000, 
+			'Quality': 'a grade', 
+			'Price': 280}, 
+		'cement': 
+			{'Nos': 16, 
+			'Price': 680, 
+			'Quality': 'a grade'}}, 
+	'Actual days charged': 8, 
+	'Percent of contract complete': 69, 
+	'Type of work': 'overall', 
+	'Contract labourers this week': 40, 
+	'Area': 1, 
+	'Wage per day': 650, 
+	'Items of Work': 
+		{'basement': 
+			{'Percent Complete Total': 63}, 
+		'parking': 
+			{'Percent Complete Total': 69},
+		'foundation': 
+			{'Percent Complete Total': 50}}}}
