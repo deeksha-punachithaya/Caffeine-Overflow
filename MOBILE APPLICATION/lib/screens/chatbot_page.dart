@@ -20,7 +20,13 @@ class _ChatbotPageState extends State<ChatbotPage> {
     keyboardType: TextInputType.number,
   );
 
-  List<bool> vis = [false];
+var f2 = InputBox(
+    hintText: 'Enter Your Query',
+    labelText: 'Ask Me Anything',
+    keyboardType: TextInputType.text,
+  );
+
+  List<bool> vis = [false, false];
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +63,7 @@ class _ChatbotPageState extends State<ChatbotPage> {
                     Message(text: 'Hey, I\'m Suraksha!'),
                     Message(
                       text:
-                          '''Here\'s what I can do!\n1) A\n2) B\n3) C\n4) D\n5) E''',
+                          '''Here\'s what I can do!\n\n1) Sitewise Details\n2) Query PMAY\n3) Take me to website''',
                     ),
                     Align(
                       alignment: Alignment.bottomRight,
@@ -74,7 +80,9 @@ class _ChatbotPageState extends State<ChatbotPage> {
                           ),
                           ChatbotFeatureButton(
                             text: ' 2 ',
-                            onTap: () {},
+                            onTap: () {
+                              vis[1] = !vis[1];
+                            },
                           ),
                           ChatbotFeatureButton(
                             text: ' 3 ',
@@ -102,23 +110,267 @@ class _ChatbotPageState extends State<ChatbotPage> {
                             Button(
                               text: 'GO',
                               onPressed: () async {
-                                var response = await http
-                                    .get('http://694e84e41ce2.ngrok.io/area/');
+                                var response = await http.get(
+                                    'http://694e84e41ce2.ngrok.io/area/${f1.input}');
                                 var body = response.body;
                                 var data = json.decode(body);
                                 showDialog(
                                   context: context,
                                   builder: (context) {
                                     return AlertDialog(
-                                      title: Text('Area Details'),
+                                      title: Text(
+                                        'Area Details',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headline5
+                                            .copyWith(
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                      ),
                                       content: ListView(
                                         children: <Widget>[
-                                          Text(''),
+                                          Text(
+                                            'Contract Laboureres(weekly): ${data['Contract labourers this week']}',
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyText1
+                                                .copyWith(
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                          ),
+                                          SizedBox(height: 12.0),
+                                          Text(
+                                            'Contractor: ${data['Contractor']}',
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyText1
+                                                .copyWith(
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                          ),
+                                          SizedBox(height: 12.0),
+                                          Text(
+                                            'Basement: ${data['Items of Work']['basement']['Percent Complete Total']}%',
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyText1
+                                                .copyWith(
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                          ),
+                                          SizedBox(height: 12.0),
+                                          Text(
+                                            'Foundation: ${data['Items of Work']['foundation']['Percent Complete Total']}%',
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyText1
+                                                .copyWith(
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                          ),
+                                          SizedBox(height: 12.0),
+                                          Text(
+                                            'Parking: ${data['Items of Work']['parking']['Percent Complete Total']}%',
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyText1
+                                                .copyWith(
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                          ),
+                                          SizedBox(height: 12.0),
+                                          Text(
+                                            'Min Days a week: ${data['Minimum Days a week']}',
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyText1
+                                                .copyWith(
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                          ),
+                                          SizedBox(height: 12.0),
+                                          Text(
+                                            'No. of Plots: ${data['Number of Plots']}',
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyText1
+                                                .copyWith(
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                          ),
+                                          SizedBox(height: 12.0),
+                                          Text(
+                                            'Contract complete: ${data['Percent of contract complete']}%',
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyText1
+                                                .copyWith(
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                          ),
                                         ],
                                       ),
                                       actions: <Widget>[
                                         IconButton(
-                                          icon: Icon(Icons.check),
+                                          color: Colors.blueAccent,
+                                          icon: Icon(Icons.check,
+                                              size: 42.0, color: Colors.green),
+                                          onPressed: () {
+                                            Navigator.pop(context);
+                                          },
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+                              },
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Visibility(
+                      visible: vis[1],
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8.0),
+                          color: Color(0xFFDCF7C3),
+                          boxShadow: [
+                            BoxShadow(
+                                color: Colors.black.withOpacity(0.7),
+                                blurRadius: 2.0,
+                                spreadRadius: 0.2)
+                          ],
+                        ),
+                        child: Column(
+                          children: <Widget>[
+                            f2,
+                            Button(
+                              text: 'GO',
+                              onPressed: () async {
+                                var response = await http.get(
+                                    'http://694e84e41ce2.ngrok.io/${f2.input}');
+                                var body = response.body;
+                                var data = json.decode(body);
+                                showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return AlertDialog(
+                                      title: Text(
+                                        'Area Details',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headline5
+                                            .copyWith(
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                      ),
+                                      content: ListView(
+                                        children: <Widget>[
+                                          Text(
+                                            'Contract Laboureres(weekly): ${data['Contract labourers this week']}',
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyText1
+                                                .copyWith(
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                          ),
+                                          SizedBox(height: 12.0),
+                                          Text(
+                                            'Contractor: ${data['Contractor']}',
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyText1
+                                                .copyWith(
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                          ),
+                                          SizedBox(height: 12.0),
+                                          Text(
+                                            'Basement: ${data['Items of Work']['basement']['Percent Complete Total']}%',
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyText1
+                                                .copyWith(
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                          ),
+                                          SizedBox(height: 12.0),
+                                          Text(
+                                            'Foundation: ${data['Items of Work']['foundation']['Percent Complete Total']}%',
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyText1
+                                                .copyWith(
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                          ),
+                                          SizedBox(height: 12.0),
+                                          Text(
+                                            'Parking: ${data['Items of Work']['parking']['Percent Complete Total']}%',
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyText1
+                                                .copyWith(
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                          ),
+                                          SizedBox(height: 12.0),
+                                          Text(
+                                            'Min Days a week: ${data['Minimum Days a week']}',
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyText1
+                                                .copyWith(
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                          ),
+                                          SizedBox(height: 12.0),
+                                          Text(
+                                            'No. of Plots: ${data['Number of Plots']}',
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyText1
+                                                .copyWith(
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                          ),
+                                          SizedBox(height: 12.0),
+                                          Text(
+                                            'Contract complete: ${data['Percent of contract complete']}%',
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyText1
+                                                .copyWith(
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                          ),
+                                        ],
+                                      ),
+                                      actions: <Widget>[
+                                        IconButton(
+                                          color: Colors.blueAccent,
+                                          icon: Icon(Icons.check,
+                                              size: 42.0, color: Colors.green),
                                           onPressed: () {
                                             Navigator.pop(context);
                                           },
