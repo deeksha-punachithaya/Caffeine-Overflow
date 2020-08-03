@@ -46,6 +46,37 @@ class _PublicFeedbackPageState extends State<PublicFeedbackPage> {
               Padding(
                 padding: const EdgeInsets.all(14.0),
                 child: Text(
+                  'Suraksha Chatbot',
+                  style: Theme.of(context).textTheme.headline5.copyWith(
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                      ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8.0),
+                    color: Colors.orangeAccent,
+
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Text(
+                      'USE SURAKSHA',
+                      textAlign: TextAlign.center,
+                      style: Theme.of(context).textTheme.headline6.copyWith(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                    ),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(14.0),
+                child: Text(
                   'Give your feedback below',
                   style: Theme.of(context).textTheme.headline5.copyWith(
                         color: Colors.black,

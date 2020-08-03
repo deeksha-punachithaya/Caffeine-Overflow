@@ -5,6 +5,7 @@ import 'package:SIH/screens/home_page.dart';
 import 'package:SIH/screens/project_completion_estimator.dart';
 import 'package:SIH/screens/project_details_page.dart';
 import 'package:SIH/screens/public_feedback_page.dart';
+import 'package:SIH/screens/chatbot_page.dart';
 import 'package:SIH/screens/sitewise_inventory_page.dart';
 import 'package:SIH/screens/weekly_feedback.dart';
 import 'package:flutter/material.dart';
@@ -120,6 +121,7 @@ class MyApp extends StatelessWidget {
         SitewiseInventoryPage.routeName: (context) => SitewiseInventoryPage(),
         Attendance.routeName: (context) => Attendance(),
         PublicFeedbackPage.routeName: (context) => PublicFeedbackPage(),
+        ChatbotPage.routeName: (context) => ChatbotPage(),
         WeeklyFeedbackPage.routeName: (context) => WeeklyFeedbackPage(),
         Login.routeName: (context) => Login(),
       },
