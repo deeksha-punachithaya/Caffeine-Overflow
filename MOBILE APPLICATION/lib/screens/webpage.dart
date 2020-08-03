@@ -25,7 +25,7 @@ class WebviewAdvisory extends StatelessWidget {
         body: Center(
           child: WebView(
             initialUrl:
-                'https://www.who.int/emergencies/diseases/novel-coronavirus-2019/advice-for-public',
+                'https://pmaymis.gov.in/',
             javascriptMode: JavascriptMode.unrestricted,
             onWebViewCreated: (WebViewController webViewController) {
               _controller.complete(webViewController);

@@ -1,4 +1,5 @@
 import 'package:SIH/custom_widgets/menu_item.dart';
+import 'package:SIH/screens/bqa.dart';
 import 'package:SIH/screens/daily_checklist_page.dart';
 import 'package:SIH/screens/project_completion_estimator.dart';
 import 'package:SIH/screens/project_details_page.dart';
@@ -103,11 +104,11 @@ class _HomePageState extends State<HomePage> {
                           onTap: () {
                             Navigator.pushNamed(
                               context,
-                              SitewiseInventoryPage.routeName,
+                              BQA.routeName,
                             );
                           },
                           icon: Icons.account_balance,
-                          text: 'Builing Quality Assurance',
+                          text: 'Building Quality Assurance',
                         ),
                       ),
                     ],
