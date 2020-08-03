@@ -107,7 +107,7 @@ class _HomePageState extends State<HomePage> {
                             );
                           },
                           icon: Icons.account_balance,
-                          text: 'Sitewise Inventory',
+                          text: 'Builing Quality Assurance',
                         ),
                       ),
                     ],

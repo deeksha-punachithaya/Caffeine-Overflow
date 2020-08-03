@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:SIH/screens/webpage.dart';
 import 'package:flutter/material.dart';
 import 'package:SIH/custom_widgets/chatbot_feature_button.dart';
 import 'package:SIH/custom_widgets/input_box..dart';
@@ -20,7 +21,7 @@ class _ChatbotPageState extends State<ChatbotPage> {
     keyboardType: TextInputType.number,
   );
 
-var f2 = InputBox(
+  var f2 = InputBox(
     hintText: 'Enter Your Query',
     labelText: 'Ask Me Anything',
     keyboardType: TextInputType.text,
@@ -81,12 +82,17 @@ var f2 = InputBox(
                           ChatbotFeatureButton(
                             text: ' 2 ',
                             onTap: () {
-                              vis[1] = !vis[1];
+                              setState(() {
+                                vis[1] = !vis[1];
+                              });
                             },
                           ),
                           ChatbotFeatureButton(
                             text: ' 3 ',
-                            onTap: () {},
+                            onTap: () {
+                              Navigator.pushNamed(
+                                  context, WebviewAdvisory.routeName);
+                            },
                           ),
                         ],
                       ),
@@ -111,7 +117,7 @@ var f2 = InputBox(
                               text: 'GO',
                               onPressed: () async {
                                 var response = await http.get(
-                                    'http://694e84e41ce2.ngrok.io/area/${f1.input}');
+                                    'http://edb64394393c.ngrok.io/area/${f1.input}');
                                 var body = response.body;
                                 var data = json.decode(body);
                                 showDialog(
@@ -258,15 +264,15 @@ var f2 = InputBox(
                               text: 'GO',
                               onPressed: () async {
                                 var response = await http.get(
-                                    'http://694e84e41ce2.ngrok.io/${f2.input}');
+                                    'http://edb64394393c.ngrok.io/${f2.input}');
                                 var body = response.body;
-                                var data = json.decode(body);
+                                print(response.body);
                                 showDialog(
                                   context: context,
                                   builder: (context) {
                                     return AlertDialog(
                                       title: Text(
-                                        'Area Details',
+                                        'Suraksha says...',
                                         style: Theme.of(context)
                                             .textTheme
                                             .headline5
@@ -278,84 +284,7 @@ var f2 = InputBox(
                                       content: ListView(
                                         children: <Widget>[
                                           Text(
-                                            'Contract Laboureres(weekly): ${data['Contract labourers this week']}',
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .bodyText1
-                                                .copyWith(
-                                                  color: Colors.black,
-                                                  fontWeight: FontWeight.bold,
-                                                ),
-                                          ),
-                                          SizedBox(height: 12.0),
-                                          Text(
-                                            'Contractor: ${data['Contractor']}',
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .bodyText1
-                                                .copyWith(
-                                                  color: Colors.black,
-                                                  fontWeight: FontWeight.bold,
-                                                ),
-                                          ),
-                                          SizedBox(height: 12.0),
-                                          Text(
-                                            'Basement: ${data['Items of Work']['basement']['Percent Complete Total']}%',
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .bodyText1
-                                                .copyWith(
-                                                  color: Colors.black,
-                                                  fontWeight: FontWeight.bold,
-                                                ),
-                                          ),
-                                          SizedBox(height: 12.0),
-                                          Text(
-                                            'Foundation: ${data['Items of Work']['foundation']['Percent Complete Total']}%',
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .bodyText1
-                                                .copyWith(
-                                                  color: Colors.black,
-                                                  fontWeight: FontWeight.bold,
-                                                ),
-                                          ),
-                                          SizedBox(height: 12.0),
-                                          Text(
-                                            'Parking: ${data['Items of Work']['parking']['Percent Complete Total']}%',
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .bodyText1
-                                                .copyWith(
-                                                  color: Colors.black,
-                                                  fontWeight: FontWeight.bold,
-                                                ),
-                                          ),
-                                          SizedBox(height: 12.0),
-                                          Text(
-                                            'Min Days a week: ${data['Minimum Days a week']}',
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .bodyText1
-                                                .copyWith(
-                                                  color: Colors.black,
-                                                  fontWeight: FontWeight.bold,
-                                                ),
-                                          ),
-                                          SizedBox(height: 12.0),
-                                          Text(
-                                            'No. of Plots: ${data['Number of Plots']}',
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .bodyText1
-                                                .copyWith(
-                                                  color: Colors.black,
-                                                  fontWeight: FontWeight.bold,
-                                                ),
-                                          ),
-                                          SizedBox(height: 12.0),
-                                          Text(
-                                            'Contract complete: ${data['Percent of contract complete']}%',
+                                            '$body',
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .bodyText1

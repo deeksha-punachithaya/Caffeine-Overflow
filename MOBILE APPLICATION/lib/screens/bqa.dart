@@ -3,17 +3,17 @@ import 'dart:io';
 import 'package:SIH/custom_widgets/button.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:path/path.dart' as Path;
+import 'package:firebase_storage/firebase_storage.dart';
 
-class ProjectCompletionEstimator extends StatefulWidget {
-  static const routeName = "ProjectCompletionEstimator";
+class BQA extends StatefulWidget {
+  static const routeName = "BQA";
 
   @override
-  _ProjectCompletionEstimatorState createState() =>
-      _ProjectCompletionEstimatorState();
+  _BQAState createState() => _BQAState();
 }
 
-class _ProjectCompletionEstimatorState
-    extends State<ProjectCompletionEstimator> {
+class _BQAState extends State<BQA> {
   File _image;
   final picker = ImagePicker();
 
@@ -41,7 +41,7 @@ class _ProjectCompletionEstimatorState
             onPressed: () {},
           ),
           title: Text(
-            'Project Completion Estimator',
+            'Building Quality Assurance',
           ),
           actions: <Widget>[
             IconButton(
@@ -127,8 +127,14 @@ class _ProjectCompletionEstimatorState
                 Expanded(
                   flex: 1,
                   child: Button(
-                    onPressed: () {
-                      print('hmm');
+                    onPressed: () async {
+                      StorageReference storageReference =
+                          FirebaseStorage.instance.ref().child(
+                              'images/images/${Path.basename(_image.path)}}');
+                      StorageUploadTask uploadTask =
+                          storageReference.putFile(_image);
+                      await uploadTask.onComplete;
+                      print('File Uploaded');
                     },
                     text: 'CALCULATE',
                   ),
