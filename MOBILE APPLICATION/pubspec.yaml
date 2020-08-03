@@ -33,6 +33,7 @@ dependencies:
   firebase_core: ^0.4.5
   image_picker: ^0.6.7+4
   local_auth: ^0.4.0+1
+  http:
 
 dev_dependencies:
   flutter_test:

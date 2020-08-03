@@ -1,3 +1,4 @@
+import 'package:SIH/screens/chatbot_page.dart';
 import 'package:SIH/custom_widgets/button.dart';
 import 'package:SIH/custom_widgets/input_box..dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -55,21 +56,25 @@ class _PublicFeedbackPageState extends State<PublicFeedbackPage> {
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8.0),
-                    color: Colors.orangeAccent,
-
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Text(
-                      'USE SURAKSHA',
-                      textAlign: TextAlign.center,
-                      style: Theme.of(context).textTheme.headline6.copyWith(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                          ),
+                child: InkWell(
+                  onTap: () {
+                    Navigator.pushNamed(context, ChatbotPage.routeName);
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8.0),
+                      color: Colors.orangeAccent,
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Text(
+                        'USE SURAKSHA',
+                        textAlign: TextAlign.center,
+                        style: Theme.of(context).textTheme.headline6.copyWith(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                            ),
+                      ),
                     ),
                   ),
                 ),
