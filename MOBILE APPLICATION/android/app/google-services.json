@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "561165430860",
+    "firebase_url": "https://caffiene-overflow.firebaseio.com",
+    "project_id": "caffiene-overflow",
+    "storage_bucket": "caffiene-overflow.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:561165430860:android:fb8e032d9e860e497e44e9",
+        "android_client_info": {
+          "package_name": "com.example.SIH"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "561165430860-ud3cddk1fv91q7g7d33f7gnjqa5ulsrt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCemtnJxppzElvAKg51jiyMYMjzPNsm-DI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "561165430860-ud3cddk1fv91q7g7d33f7gnjqa5ulsrt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
