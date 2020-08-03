@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ghar Suraksha Admin Template</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+  <style>
+    html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+    table.center {margin-left:auto; margin-right:auto;}
+  </style>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+</head>
+
+<body class="w3-light-grey">
+
+<!-- Top container -->
+<div class="w3-bar w3-top w3-black w3-large" style="z-index:4">
+  <button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey" onclick="w3_open();"><i class="fa fa-bars"></i>  Menu</button>
+  <div style="font-size:20px; padding-top: 5px;">
+    <span style="float: left; color: #0565ff; margin-left:50px;">GHAR</span><span style="color: #76f5f1"> SURAKSHA</span>
+    <span class="w3-bar-item w3-right"> <button style="color: #7e8b9e" type="button" name="login">Login</button> </span>
+  </div>
+</div>
+
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
+  <div class="w3-container w3-row">
+    <div class="w3-container" style="text-align: center; height:30px;">
+      <span class="w3-xlarge" style="display: inline-block;">Welcome, <strong>Admin!</strong></span><br>
+      <div class="search">
+        <form action="/reports/" method="POST">
+          <input id="search-box" name="search" type="text" placeholder="Search area number">
+          <button type="submit" name="search-btn"><i class="fa fa-search" aria-hidden="true"></i></button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <hr>
+  <br>
+    <div class="w3-bar-block w3-padding">
+    <!-- <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>  Close Menu</a> -->
+    <a href="#dashboard-ref" class="w3-bar-item w3-button w3-padding"><i class="fa fa-desktop fa-fw"></i>  Dashboard</a>
+    <a href="#images-ref" class="w3-bar-item w3-button w3-padding"><i class="fa fa-file-image-o fa-fw"></i>  Images</a>
+    <a href="#bills-ref" class="w3-bar-item w3-button w3-padding"><i class="fa fa-inr fa-fw"></i>  Bills And Invoices</a>
+    <a href="#reports-ref" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bar-chart fa-fw"></i>  Reports</a>
+    <a href="#public-ref" class="w3-bar-item w3-button w3-padding"><i class="fa fa-comments-o fa-fw"></i>  Public Review</a>
+    <!-- <a href="#contacts-ref" class="w3-bar-item w3-button w3-padding"><i class="fa fa-envelope fa-fw"></i>  Contact Us</a> -->
+    <a href="#settings.html" class="w3-bar-item w3-button w3-padding"><i class="fa fa-cogs fa-fw"></i>  Settings</a>
+  </div>
+</nav>
+
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:300px;margin-top:43px;">
+
+  <div class="w3-container" id="dashboard-ref">
+    <header class="w3-container" style="padding-top:22px">
+      <h5 style="text-align:center;padding:10px;" class="w3-xxxlarge w3-text-cyan"><b>Dashboard</b></h5>
+    </header>
+
+    <div class="w3-container" id="dashboard-content">
+      <div class="w3-container mx-auto">
+        <img class="img-fluid" src="{{ user_image }}" alt="User Image" height=600 width=850>
+      </div>
+      <hr>
+      <div class="chart" id="bargraph">
+        <script>
+          var graphs = {{plot | safe}};
+          Plotly.plot('bargraph',graphs,{});
+       </script>
+      </div>
+      <hr>
+      <div class="chart" id="gauge">
+        <script>
+          var graphs = {{ progress | safe}};
+          Plotly.plot('gauge',graphs,{});
+        </script>
+      </div>
+    </div>
+  </div>
+  <hr>
+  <div class="w3-container" id="images-ref">
+    <header class="w3-container" style="padding-top:22px">
+      <h5 style="text-align:center;padding:10px;" class="w3-xxxlarge w3-text-cyan"><b>Images</b></h5>
+    </header>
+    <div class="w3-container" id="images-content">
+      <!-- <span> Dashboard Content</span> -->
+    </div>
+  </div>
+  <hr>
+  <div class="w3-container" id="bills-ref">
+    <header class="w3-container" style="padding-top:22px">
+      <h5 style="text-align:center;padding:10px;" class="w3-xxxlarge w3-text-cyan"><b>Bills And Invoices</b></h5>
+    </header>
+    <div class="w3-container" id="bills-content">
+      <!-- <span> Dashboard Content</span> -->
+    </div>
+  </div>
+  <hr>
+  <div class="w3-container" id="reports-ref">
+    <header class="w3-container" style="padding-top:22px">
+      <h5 style="text-align:center;padding:10px;" class="w3-xxxlarge w3-text-cyan"><b>Reports</b></h5>
+    </header>
+      <br>
+      <div class="container">
+        <p>Pick report to print</p>
+        <form class="" action="/report_list/" method="post">
+          <select class="" name="select-report">
+            {% for report in report_list %}
+            <option value="{{report.id}}"> <pre>Area: {{ report.to_dict()['Area'] }}  &nbsp </pre><pre>Date: {{ report.to_dict()['Date'] }}</pre> </option>
+            {% endfor %}
+          </select>
+          <button type="submit" name="select-report-btn">Print Report</button>
+        </form>
+      </div>
+    <div class="w3-container" id="reports-content">
+      <!-- <span> Reports Content</span> -->
+    </div>
+  </div>
+  <hr>
+  <div class="w3-container" id="public-ref">
+    <header class="w3-container" style="padding-top:22px">
+      <h5 style="text-align:center;padding:10px;" class="w3-xxxlarge w3-text-cyan"><b>Public Review And Opinion</b></h5>
+    </header>
+    <div class="w3-container" id="public-content">
+      <div class="container-fluid">
+        <!-- <div class="row"> -->
+          <div class="w3-container col-lg-9 w3-table w3-bordered w3-centered w3-card-4 w3-border w3-border-grey"> <!-- col-lg-6 w3-border w3-border-grey -->
+            <table class="center">
+              <th>USERNAME</th>
+              <th>COMMENTS</th>
+              {% for comment in comments %}
+                <tr>
+                  <td>{{ comment.id }}</td>
+                  <td>{{ comment.to_dict()['feedback'] }}</td>
+                </tr>
+              {% endfor %}
+            </table>
+          </div>
+          <!-- <div class="col-lg-6 w3-border w3-border-grey">
+            Container Right
+          </div> -->
+        <!-- </div> -->
+      </div>
+    </div>
+  </div>
+  <hr>
+
+  <div class="w3-container" id="settings-ref">
+    <header class="w3-container" id="settings-ref" style="padding-top:22px">
+      <h5 style="text-align:center; padding:10px;" class="w3-xxxlarge w3-text-pink w3-text-cyan"><b>Settings</b></h5>
+    </header>
+    <div class="w3-container" id="settings-content">
+      <!-- <span> Dashboard Content</span> -->
+    </div>
+  </div>
+
+  </div>
+  <br>
+</div>
+
+<script>
+// Get the Sidebar
+var mySidebar = document.getElementById("mySidebar");
+
+// Get the DIV with overlay effect
+var overlayBg = document.getElementById("myOverlay");
+
+// Toggle between showing and hiding the sidebar, and add overlay effect
+function w3_open() {
+  if (mySidebar.style.display === 'block') {
+    mySidebar.style.display = 'none';
+    overlayBg.style.display = "none";
+  } else {
+    mySidebar.style.display = 'block';
+    overlayBg.style.display = "block";
+  }
+}
+
+function search() {
+
+}
+// Close the sidebar with the close button
+function w3_close() {
+  mySidebar.style.display = "none";
+  overlayBg.style.display = "none";
+}
+</script>
+<script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-storage.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+<!-- <script type="text/javascript" src="config.js"></script>
+<script type="text/javascript" src="firebase.js"></script> -->
+<script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyCRns0UCpjutvRZHdYRCuqcqhdw9ZPKDHU",
+    authDomain: "sample-project-1712d.firebaseapp.com",
+    databaseURL: "https://sample-project-1712d.firebaseio.com",
+    projectId: "sample-project-1712d",
+    storageBucket: "sample-project-1712d.appspot.com",
+    messagingSenderId: "610161014509",
+    appId: "1:610161014509:web:407a25f9dc59ca4f43bee4",
+    measurementId: "G-CKW7JNHGPE"
+  };
+// Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  console.log("initialized")
+  var img_index = 1;
+  var storageRef = firebase.storage().ref();
+  var listRef = storageRef.child('construction');
+  listRef.listAll().then(function(result){
+    console.log(result);
+    result.items.forEach(function(imgRef){
+        imgRef.getDownloadURL().then(function(url){
+            var img = $('<img />').attr({
+                'id': 'poster'+img_index,
+                'class': 'w3-border w3-padding w3-card-4',
+                'src': url,
+                'alt': 'image',
+                'title': 'image',
+                'width': 300,
+                'height':200
+            }).appendTo('#images-content');
+
+            img_index++;
+        });
+    })
+}).catch(function(error){
+    console.log(error);
+});
+</script>
+</body>
+</html>
